@@ -1,0 +1,7 @@
+1. The Dynamic Segment (:id)
+    The colon (:) is the most important part of this syntax. It turns id into a URL Parameter (or "param").
+
+    It acts as a placeholder or a variable name.
+
+    It tells the router: "Match any URL that starts with /products/ followed by anything."
+

@@ -1,0 +1,225 @@
+WEEK ONE
+
+1. UNDERSTOOD REACT ROUTING 
+    1. first, define (couple)  paths and their respective components in.
+        this serves as your application reacting dictionary.
+        it serves as a rference point for your pages path any time you want to embed a page on another page.
+        it is always avisable to define your routinn in App.jsx file, then render the App component inside the main.jsx.
+
+        the two main ways to define your ROUTING
+
+
+    ONE: 
+        DECLEARATIVE MODE (USING ROUTES AND ROUTE REACT COMPONENTS)
+        e.g
+                    App.jsx
+            import React from "react";
+            import Home from "./components/Home";
+            import Contact from "./components/Contact";
+            import About from "./components/About";
+            import { Route, Routes } from "react-router-dom";
+
+            function App() {
+            return (
+                <>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contact" element={<Contact />} />
+                </Routes>
+                </>
+            );
+            }
+
+            export default App;
+
+                    main.jsx
+            import { StrictMode } from "react";
+            import { createRoot } from "react-dom/client";
+            import App from "./App.jsx";
+            import { BrowserRouter } from "react-router-dom";
+
+            createRoot(document.getElementById("root")).render(
+            <StrictMode>
+                <BrowserRouter>
+                <App />
+                </BrowserRouter>
+            </StrictMode>
+            );
+
+
+
+    TWO:
+        DATA MODE (USING ARRAY OF OBJECTS {path:"path" , component: component })
+
+                    App.jsx
+            import React from "react";
+
+            import { createBrowserRouter, RouterProvider } from "react-router";
+            import Home from "./components/Home.jsx";
+            import About from "./components/About.jsx";
+            import Contact from "./components/Contact.jsx";
+
+            function App() {
+            const router = createBrowserRouter([
+                {
+                path: "/",
+                Component: Home,
+                },
+                {
+                path: "/about",
+                Component: About,
+                },
+                {
+                path: "/contact",
+                Component: Contact,
+                },
+            ]);
+            return (
+                <div>
+                <RouterProvider router={router} />;
+                </div>
+            );
+            }
+
+            export default App;
+
+
+                    Main.jsx
+            import { StrictMode } from "react";
+            import { createRoot } from "react-dom/client";
+            import App from "./App.jsx";
+
+            createRoot(document.getElementById("root")).render(
+            <StrictMode>
+                <App />
+            </StrictMode>,
+            );
+
+
+2. UNDERSTOOD THE BASIC KNOWLEDGE ABOUT THE THREE DIFERENT METHOD OF REACT 
+   ROUTING
+    1.   Declearative method (have Basic routing features)
+    2.   Data method (have more advanced routing feacture)
+    3.   Framework method (have supper advanced routing features)
+
+3. understood the key difference between <NavLink></NavLink> component and 
+    <Link></Link> component.
+
+    <Link>  (None smart does not track changes)
+    General links (footer, body text, "Read More").
+    Static; stays the same regardless of URL.
+    Simple navigation.
+
+    <NavLink> (Smart in nature, tracks changes)
+        Navigation menus (Header, Sidebar, Tabs).
+        Dynamic; can change color/font-weight when active.
+        Supports conditional classes or inline styles via a function.
+
+    
+4. UNDERSTOOD THE USE OF Outlet Component
+        You rarely want to re-declare your <Navbar/>, <Footer/> components on every page. Use a layout route instead.
+        This this Achieved throuh the use of Outlet component
+        e.g:
+
+            ROUTER DEFINITION
+        import { Routes, Route } from 'react-router-dom'
+        import Layout from './components/Layout'
+        import Dashboard from './pages/Dashboard'
+        import StaffList from './pages/StaffList'
+        import StaffProfile from './pages/StaffProfile'
+        import AddStaff from './pages/AddStaff'
+
+        export default function App() {
+        return (
+            <Routes>
+            <Route path="/" element={<Layout />}>
+                <Route index element={<Dashboard />} />
+                <Route path="staff" element={<StaffList />} />
+                <Route path="staff/add" element={<AddStaff />} />
+                <Route path="staff/:id" element={<StaffProfile />} />
+            </Route>
+            </Routes>
+        )
+        }
+
+        ROUTING
+        mport { Outlet } from "react-router-dom";
+        import Sidebar from "./Sidebar";
+        import Navbar from "./Navbar";
+
+        export default function Layout() {
+        return (
+            <div className="flex h-dvh overflow-hidden bg-slate-100">
+            <Sidebar />
+
+            <div className="flex flex-1 flex-col overflow-hidden">
+                <Navbar />
+
+                <main className="flex-1 overflow-y-auto p-6">
+                <Outlet />
+                </main>
+
+            </div>
+
+            </div>
+        );
+        }
+
+        <Outlet /> is a placeholder — React Router replaces it with whatever child route matches the current URL.
+        
+
+
+WEEK2
+
+1. DIFERENCE BETWEEN PROPS AND STATE
+    Props: They are External. They are passed from a parent component down to a child component. The child has no control over them; it can only "read" them.
+
+    State: It is Internal. It lives inside the component itself. The component "owns" this data and is the only one that can change it.
+
+2. CHILDREN PROPERTY:
+    In React, the children prop is a special, built-in property that automatically captures whatever content you place between the opening and closing tags of a component.
+
+
+3. DIFERENCE BETWEEN 
+    a. Self-closing component <Panel/>
+    b. Compositional component <Panel>contents</Panel>
+
+
+4. THE MAIN CONDITION/SITUATION FOR SHARING DATA AMONCOMPONENTSG 
+    To lift state up, you must locate the closest common parent component of both of the child components that you want to coordinate.
+5. 
+
+
+WEEK3
+
+1.  UNDERSTOOD HOW TO USE ( git merge --abort ) abort merge that in conflict.
+2.  UNDERSTOOD HOW TO USE ( git reset --hard ORIG_HEAD )
+    resets repository back to formal state, used when merge was successful.
+
+3.  UNDERSTOOD HOW TO DELETE BRANCHES
+        Delete local branch (Safe)
+            git branch -d <branch-name>
+        
+        Delete local branch (Force)
+            git branch -D <branch-name>
+        
+        Delete remote branch
+            git push origin --delete <branch-name>
+
+        Clean up deleted remote traces
+            git fetch --prune
+
+
+
+WEEK4
+
+1.  strugling to understand how to use postman Api (Undertood)
+2.  strugling to understand to to do authentication (Undertood)
+3.  Main Difference Between git pull and git fetch. (understand)
+4.  Generate UML diagram from my ready made application. (Done)
+5.  How to edit README.md file that came with my react application (Done)
+5.  will a project have two README.md files, (YES)
+	i.  one for Public about the project
+	ii. one for the them, for development guildelines.
+	iii. you can even create README folder on the root directory.

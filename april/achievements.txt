@@ -1,0 +1,130 @@
+WEEK13
+
+1. learnt and understood the following very well
+        1. .showModal()
+        2. .show()
+        3. .close()
+        3. ofset and limit
+
+2. understood and made use of event report object
+        1. event.target()
+        2. event.currentTarget
+        3. event.preventDefault()
+        4. event.stopPropagation()
+        5. event.type
+
+
+WEEK14
+
+1. Understanding React Hook
+        Hook: In React, a Hook is a special function that lets you "hook into" React features like state and lifecycle methods without writing a class component.
+
+        state: In React, State is essentially a component's private memory. It is an object or a value that holds information about the component's current situation.
+
+        stateVariable: holds the current state value
+        setStateFunction: (the setter function) updates the state variable
+        initialValue: sets the initial state
+
+NOTE NB:
+ that the state in a React component is private, and is isolated to each component instance. 
+ This means that, if you render the same component twice, the state component of one does not affect the other. 
+ This also means that, if you'd like to share state between components, then you'd need to lift the state up to a common parent and pass it down as props.
+
+ 2. RENDERING
+        This the process through which react displays data on the screen.
+        There stages involve in react rendering.
+        i. triger: react notice a change in state or property
+        2. render: react recalculate the component and compare there virtaul   
+           DOM to the real DOM and know exactly what to rende.
+        3. Commit: This is the moment react displays the data on the screen.
+
+3. HOW TO USE THE SETTER FUNCTION IN REACT USE-STATE HOOK.
+        To use the setter function in react hook. when you call the setter method, inside it pass in the lines of code or  functions you want to execute.
+                jus like the same way, we call the map method in vannilar javascript, then inside the map we pass in the codes or function we want to execute.
+
+WEEK 4
+
+1. HOW TO IMPORT REACT PROPERTIES USING THE OBJECT DISTRUCTURING
+        e.g:
+                1. const { useState, useEffect } = React;
+                        a. This looks for resct react property named useState  import it and asign it to the useState variable.
+                        i.e useState = react.useState
+
+                        ALSO:
+
+                        a. This looks for resct react property named useEffect
+                          import it and asign it to the useEffect variable.
+                        i.e useEffect = react.useEffect
+
+                2. Import all react components
+                const { 
+                        useState, 
+                        useEffect, 
+                        useContext, 
+                        useReducer, 
+                        useRef, 
+                        useMemo, 
+                        useCallback, 
+                        useLayoutEffect, 
+                        useId,
+                        useTransition,
+                        useDeferredValue,
+
+
+                        memo, 
+                        lazy, 
+                        forwardRef, 
+                        createContext, 
+                        isValidElement, 
+                        cloneElement, 
+                        createElement,
+
+                        Fragment, 
+                        StrictMode, 
+                        Suspense, 
+                        Profiler 
+                        } = React;
+                        
+2. HOW TO USE THE INPUT TAG WITH TYPE AS COLOR
+        e.g: <input type = "color" value="" id = "" class = ""/>
+3. How alway keep the value of and input element to a particular variabe value
+        e.g: let coloring  (be a variable holding the value of a color)
+             <input type = {coloring} value="" id = "" class = ""/>
+
+4. BEFORE WRITING ANY COMPONENTS, TRY TO FIGUERE WHAT THE THE REQUIREMENTS
+        i.      is the function of the component
+        ii.     list all the functions down
+        iii.    list the requirements to for those functions
+        iv.     list the route of programme execution: how do you thing         
+                javascript is going to follow and execute the lines of codes at ant point in time.
+        v.      identy all the libraries needed for the execution.
+
+5. HOW TO WRITE ANONYMOUS ASYNCHRONOUS FUNCTION
+        e.g     const timeoutId = setTimeout(async () => {
+
+      try {
+        
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }, 700);
+
+
+
+
+                async () => {
+
+                try {
+                        
+                } catch (error) {
+                        console.error("Error fetching data:", error);
+                }
+                }
+
+6. RECALLED FULLYWELL HOW MAPPING (.map) AND FILTER (.filter) RETURN AND ARRAY 
+   AND IT OUTPUT.
+
+7. UNDERSTOOD THE USE ARIAL-LIVE ATRIBUTE (Used to alert machine reader that   
+   the content of an element will be changing).
+
+8.

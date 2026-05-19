@@ -1,0 +1,130 @@
+WEEK1
+1. learnt how to do responsiveness using css grid;
+    a. repeat(auto-fit, minmax(200px, 1fr));
+
+    **What this does:**
+
+    - `repeat()`: Creates repeating columns
+    - `auto-fit`: Creates as many columns as will fit
+    - `minmax(200px, 1fr)`: Each column is minimum 200px, maximum 1fr
+    - Result: Automatically responsive! On wide screens: many columns. On narrow screens: fewer columns.
+
+    e.g:
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+2. Jus learnt now tthat I can apply hover effect on images
+     e.g
+     images-select (eiter ID, or class, or element):hover{
+        property: value;
+     }
+
+        .photo:hover {
+            opacity: 0.5
+        }
+
+3.  How to use flex-grow and flex-shrink in css flexbox
+        .content {
+        display: flex;
+        /* flex: 1; */
+        flex-grow: 1;
+        }
+
+
+4.  Using aspect ratio on images
+
+
+5.  Safe internet Day.
+    discovered how to scan for phising websites using 
+        https://www.virustotal.com/.
+
+6.  understood the misconception between Ai, Humans, and Bots...
+
+
+
+
+WEEK2
+1.  CSS grid:
+    a. Defining Layoutss:
+        i.  grid-template-column
+        ii. grid-template-row
+        iii.    grid-template-area
+
+    b. Asigning Spaces to Elements:
+        i.  grid-column
+        ii. grid-row
+        iii.    grid-area
+
+
+2.  CSS flex:
+    a.  Display:flex
+
+
+3. Display Properties:
+    a.  justify content
+    b.  Align items
+
+NOTE: Difference between Grid and Flex
+        Grid is Layout First Before element.
+        While 
+        Flex is Elements First before Layout
+
+
+4.  Creating Normal landing pages
+
+5.  Creating complex Dasboards layout using Grid for over grid Display layout and 
+    flex for individaul items placement.
+
+6.  Giving Elements Multiple classes
+
+7.  Difference between pseudo element and pseudo classes
+
+8.  understood the Different unit of measurement in web programming CSS:
+    a.  pixel (px):
+            used for having fixed dimension, like fixed width, fixed height.
+            fixed font.
+    b.  percentage:
+            used for having proportional scaling of element based on it parent container.
+            used maily for image scaling.
+    c.  em:
+            This unit is is relative to typography of it's parent contaner.
+            usedfor typography, for letter spacing, button texts, button border raduis.
+    d.  rem:
+            depends on the root element ( <html></html> ).
+            Best for typography on the web-page.
+    e.  vh, vw:
+            These units are relative to the viewport of the screen. it is used maily for telling element to occupy a particular proportion of the screen viewport.
+    f.  
+
+9.  header
+        A <header> element can be used multiple times — once as a page-level landmark and again inside <article> or <section>. Here it is the page-level hero. Placing <main> content inside <header> would be wrong; the hero is genuinely a header/introduction to the page.
+
+10. Table:
+        HTML Table anatomy — memorise this
+        <table> wraps everything. <thead> holds the header row. <tbody> holds all data rows. <tr> is a table row. <th> is a header cell (bold, centred by default). <td> is a data cell. Always include <thead> and <tbody> — they allow separate styling and help screen readers understand the structure.
+
+11. color: inherit;
+        This is a very clever way to manage your site's color palette.
+        The Default: Links are usually "Royal Blue" by default, and turn "Purple" once you've clicked them.
+        The "Inherit" Trick: Instead of forcing a specific color, inherit tells the link to take the color of its parent element.
+
+12. The Hero section:
+    This is the section that introduces the web.
+    it normally contains the the title on h1-, decription on p- and other important information.
+
+13. Making use of Box-shadow
+14. understood the naming convention for IDs, classes. 
+    How Elements belongs to multiple classes.
+
+
+
+
+WEEK3
+
+1.      Learnt to navigate, create and use .gitignore.
+2.      understood the importance of gitignore.
+

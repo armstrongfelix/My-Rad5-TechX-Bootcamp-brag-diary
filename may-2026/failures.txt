@@ -1,0 +1,18 @@
+WEEK ONE
+1. Strugling to understand api params very well in javascript
+2. strugling to understand fully when and how to plcace useEffect() hook in react application inreact
+3. Study the different react appllications and see how useState hook is managed to grapse the use of useState.
+4. Framework mode in react routing
+3. Nested routing in react routing
+4. useParam() Hook, and how is used to enable dynamic routing
+
+WEEK3
+1.  strugling to understand how to use postman Api (Undertood)
+2.  strugling to understand to to do authentication (Undertood)
+3.  Main Difference Between git pull and git fetch. (understand)
+4.  Generate UML diagram from my ready made application. (Done)
+5.  How to edit README.md file that came with my react application (Done)
+5.  will a project have two README.md files, (YES)
+	i.  one for Public about the project
+	ii. one for the them, for development guildelines.
+	iii. you can even create README folder on the root directory.
