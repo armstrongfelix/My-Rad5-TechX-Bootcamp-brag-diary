@@ -16,3 +16,15 @@ WEEK3
 	i.  one for Public about the project
 	ii. one for the them, for development guildelines.
 	iii. you can even create README folder on the root directory.
+
+WEEK4
+The Differen types of function.
+i.  arrow funtion 
+ii. higher order function
+iii anoymouus function
+iv. anonymous function in zustand, 
+v.  anonymous function in onClick events.
+vi. Writing anonymous that manipulate the state in a zustand funtion.
+vii what is set in zustand
+v3i what is selector  and why selectoe in zustand
+ix. what is store in zustand

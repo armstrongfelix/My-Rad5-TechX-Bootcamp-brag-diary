@@ -223,3 +223,40 @@ WEEK4
 	i.  one for Public about the project
 	ii. one for the them, for development guildelines.
 	iii. you can even create README folder on the root directory.
+
+
+REFACTORING STORES IN REACT APPLICATION USING ZUSTAND
+
+CREATING STORES
+
+1.  Store is a folder that houses different files, each file is a segment in the store.
+
+2.  e.g todoStore.js this serves as store segment/particularcategory in the store that houses a particular Data and function that manipulates it.
+
+3.  the todoStore.js file inside it, it has a function that returns an OBJECT, this function is called Hook. e,g useTodoStore. it is exported from the file...
+NOTE: to use zustand, create must be imported from zustand.
+
+    import { create } from zustand
+
+    The hook goes like this.
+    export useTodoStore = create((set) => ({}) )
+4.  The create is a function that accepts a callback function.
+    this callback function accepts one argument set, though set is anything/you can name that parameter anything.
+
+5. The set => ({}), anything that needs to be store in this store segment will be stored in key value paires just as the way we store things in object.
+it is this object that the hook function will return.
+i.e ({}) the object returns the initail values and the functions(action) that modifies them in key value-paires.
+
+
+CALLING STORED DATA
+
+1. import the the store hook
+    e.g import { useTodoStore } from ../stores/todoStore.js
+2. the name you want to give to the data you want to call.
+    e.g const todo = useTodoStore((state) => state.(the property in the store))
+        const todo = useTodoStore((state) => state.todoData)
+3.  (state) => state.todoData, this is called a selector, teling zustand i only care about todoData from from the store
+
+
+UNDERSTOOD HOW TO USE persit in zustand TO SAVE TO LOCAL STORAGE
+const useTodoStore = create(persit(set => ({}), {name: storagename}))
