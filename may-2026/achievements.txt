@@ -260,3 +260,442 @@ CALLING STORED DATA
 
 UNDERSTOOD HOW TO USE persit in zustand TO SAVE TO LOCAL STORAGE
 const useTodoStore = create(persit(set => ({}), {name: storagename}))
+
+
+
+WEEK5 
+
+1.  UNDERSTOOD HOW TO USE persit in zustand TO SAVE TO LOCAL STORAGE
+    const useTodoStore = create(persit(set => ({}), {name: storagename}))
+
+
+2.  MAIN DIFERENCE BETWEEN CALLING A FUNCTION AND PASSING A FUNCTION
+3.  UNDERSTOOD WHY WE NEED TO PASS A FUNCTION TO AN EVENT ATTRRIBUTE
+
+    NOTE: In a situation where a function must be called because it requires  an argument passage, it will always be called in anonymous function passing.
+
+
+4.  Undertood Event propagation
+    how to stop event propagating to the child.
+
+    NOTE: All events propergates except "Scroll events"
+
+5.  understood the main difference between the e.stopPropergation() and and 
+    e.preventDefault()
+
+
+
+LECTURE RESPONDING TO EVENTS
+
+  RECAP:
+        You can handle events by passing a function as a prop to an element like <button>.
+
+        Event handlers must be passed, not called! onClick={handleClick}, not onClick={handleClick()}.
+
+        You can define an event handler function separately or inline.
+
+        Event handlers are defined inside a component, so they can access props.
+
+        You can declare an event handler in a parent and pass it as a prop to a child.
+
+        You can define your own event handler props with application-specific names.
+
+        Events propagate upwards. Call e.stopPropagation() on the first argument to prevent that.
+
+        Events may have unwanted default browser behavior. Call e.preventDefault() to prevent that.
+
+        Explicitly calling an event handler prop from a child handler is a good alternative to propagation.
+
+
+LECTURE ON State: A Component's Memory
+
+    RECAP:
+        Use a state variable when a component needs to “remember” some information between renders.
+
+        State variables are declared by calling the useState Hook.
+
+        Hooks are special functions that start with use. They let you “hook into” React features like state.
+
+        Hooks might remind you of imports: they need to be called unconditionally. Calling Hooks, including useState, is only valid at the top level of a component or another Hook.
+
+        The useState Hook returns a pair of values: the current state and the function to update it.
+
+        You can have more than one state variable. Internally, React matches them up by their order.
+
+        State is private to the component. If you render it in two places, each copy gets its own state.
+
+
+
+LECTURE Render and Commit:
+
+STEPS:
+    Step 1: Trigger a render 
+        There are two reasons for a component to render:
+
+        It’s the component’s initial render.
+        The component’s (or one of its ancestors’) state has been updated.
+
+    
+    Step 2: React renders your components 
+        After you trigger a render, React calls your components to figure out what to display on screen. “Rendering” is React calling your components.
+
+        On initial render, React will call the root component.
+        For subsequent renders, React will call the function component whose state update triggered the render.
+        This process is recursive: if the updated component returns some other component, React will render that component next, and if that component also returns something, it will render that component next, and so on. The process will continue until there are no more nested components and React knows exactly what should be displayed on screen.
+
+        In the following example, React will call Gallery() and Image() several times:
+
+    Step 3: React commits changes to the DOM 
+        After rendering (calling) your components, React will modify the DOM.
+
+        For the initial render, React will use the appendChild() DOM API to put all the DOM nodes it has created on screen.
+        For re-renders, React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
+
+
+
+    Epilogue: Browser paint 
+        After rendering is done and React updated the DOM, the browser will repaint the screen. Although this process is known as “browser rendering”, we’ll refer to it as “painting” to avoid confusion throughout the docs.
+
+    
+
+RECAP:
+
+    Any screen update in a React app happens in three steps:
+    Trigger
+    Render
+    Commit
+
+    You can use Strict Mode to find mistakes in your components.
+    React does not touch the DOM if the rendering result is the same as last time.
+
+
+LECTURE State as a Snapshot:
+    RECAP
+        Setting state requests a new render.
+        React stores state outside of your component, as if on a shelf.
+        When you call useState, React gives you a snapshot of the state for that render.
+        Variables and event handlers don’t “survive” re-renders. Every render has its own event handlers.
+        Every render (and functions inside it) will always “see” the snapshot of the state that React gave to that render.
+        You can mentally substitute state in event handlers, similarly to how you think about the rendered JSX.
+        Event handlers created in the past have the state values from the render in which they were created.
+
+
+LECTURE Queueing a Series of State Updates:
+
+    React batches state updates 
+        React waits until all code in the event handlers has run before processing your state updates.
+
+        This is why the re-render only happens after all the codes in the event handlers have run finish.
+
+        This lets you update multiple state variables—even from multiple components—without triggering too many re-renders.
+
+        But this also means that the UI won’t be updated until after your event handler, and any code in it, completes.
+
+        This behavior, also known as batching, makes your React app run much faster. 
+        It also avoids dealing with confusing “half-finished” renders where only some of the variables have been updated.
+        
+
+
+Queueing State Updates
+    Updating the same state multiple times before the next render 
+        It is an uncommon use case, but if you would like to update the same state variable multiple times before the next render, instead of passing the next state value like setNumber(number + 1), you can pass a function that calculates the next state based on the previous one in the queue, like setNumber(n => n + 1). It is a way to tell React to “do something with the state value” instead of just replacing it.
+
+            import { useState } from 'react';
+
+            export default function Counter() {
+            const [number, setNumber] = useState(0);
+
+            return (
+                <>
+                <h1>{number}</h1>
+                <button onClick={() => {
+                    setNumber(n => n + 1);
+                    setNumber(n => n + 1);
+                    setNumber(n => n + 1);
+                }}>+3</button>
+                </>
+            )
+            }
+
+    Difference Between USING replacing a state variable and passing a function
+    1. replacing a state variable
+        setcount(count+1)
+
+    2. passing a function
+        setcount(count => count + 1)
+
+
+    Recap
+        Setting state does not change the variable in the existing render, but it requests a new render.
+
+        React processes state updates after event handlers have finished running. This is called batching.
+        
+        To update some state multiple times in one event, you can use setNumber(n => n + 1) updater function.
+
+
+NOTE:
+        That the ... spread syntax is “shallow”—it only copies things one level deep. This makes it fast, but it also means that if you want to update a nested property, you’ll have to use it more than once.
+
+
+            UPDATING OBJECTS IN STATE USING SPREAD OPERATOR     
+    UPDATING NESTED OBJECT IN STATE USING SPREAD OPERATOR:
+e.g
+const [user, setUser] = useState({
+    name: "felix"
+    contacts: {
+        phone: 07064917819
+        work: armstrongfelix4@gmail.com
+
+    }
+    courses:{
+        mainCourse:Software
+        secondaryCourse:Business
+        language:English
+        areasOfSpecialization:{
+            engineering: electrical
+            pureScience: Physics
+        }
+    }
+})
+    
+    function handleNameChange(e) {
+        setUser({...user, name: e.target.value})
+    }
+
+
+    function handlePhoneChange(e) {
+        setUser({...user, contacts: {...user.contacts, phone: e.target.value}})
+    }
+
+    function handleEngineeringChange(e) {
+        setUser({...user, courses: {...user.courses, areasOfSpecialization: {...user.courses.areasOfSpecialization, engineering: e.target.value}}})
+    }
+
+
+UPDATING OBJECT IN STATE USING Immer Library
+UPDATING NESTED OBJECT IN STATE USING Immer Library
+
+            To try Immer:
+
+            Run npm install use-immer (to add Immer as a dependency)
+
+            Then replace import { useState } from 'react' with import 
+            { useImmer } from 'use-immer'
+
+
+            import { useImmer } from 'use-immer';
+
+            export default function Form() {
+            const [person, updatePerson] = useImmer({
+                name: 'Niki de Saint Phalle',
+                artwork: {
+                title: 'Blue Nana',
+                city: 'Hamburg',
+                image: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
+                }
+            });
+
+            function handleNameChange(e) {
+                updatePerson(draft => {
+                draft.name = e.target.value;
+                });
+            }
+
+            function handleTitleChange(e) {
+                updatePerson(draft => {
+                draft.artwork.title = e.target.value;
+                });
+            }
+
+            function handleCityChange(e) {
+                updatePerson(draft => {
+                draft.artwork.city = e.target.value;
+                });
+            }
+
+            function handleImageChange(e) {
+                updatePerson(draft => {
+                draft.artwork.image = e.target.value;
+                });
+            }
+
+            return (
+                <>
+                <label>
+                    Name:
+                    <input
+                    value={person.name}
+                    onChange={handleNameChange}
+                    />
+                </label>
+                <label>
+                    Title:
+                    <input
+                    value={person.artwork.title}
+                    onChange={handleTitleChange}
+                    />
+                </label>
+                <label>
+                    City:
+                    <input
+                    value={person.artwork.city}
+                    onChange={handleCityChange}
+                    />
+                </label>
+                <label>
+                    Image:
+                    <input
+                    value={person.artwork.image}
+                    onChange={handleImageChange}
+                    />
+                </label>
+                <p>
+                    <i>{person.artwork.title}</i>
+                    {' by '}
+                    {person.name}
+                    <br />
+                    (located in {person.artwork.city})
+                </p>
+                <img
+                    src={person.artwork.image}
+                    alt={person.artwork.title}
+                />
+                </>
+            );
+            }
+
+
+LECTURE UPDATING OBJECTS IN STATE
+Recap:
+
+        Treat all state in React as immutable.
+
+        When you store objects in state, mutating them will not trigger renders and will change the state in previous render “snapshots”.
+
+        Instead of mutating an object, create a new version of it, and trigger a re-render by setting state to it.
+
+        You can use the {...obj, something: 'newValue'} object spread syntax to create copies of objects.
+
+        Spread syntax is shallow: it only copies one level deep.
+
+        To update a nested object, you need to create copies all the way up from the place you’re updating.
+        
+        To reduce repetitive copying code, use Immer.
+
+        To remove property from an object in state we set that property to null, while rendering on screen (we use if property name == null) we jump it.
+
+LECTURE: UPDATING ARRAY IN STATE
+RECALL, ANYTHING IN STATE IS TREATED IN READ ONLY (immutable)
+
+        To add to item to an array in state, we use spread operator
+            e.g
+            setItem([...arrayName, newItem] )   _push
+            setItem([newItem, ...arrayName] )   _unshift
+
+        To delete items from array in state, we use filter method because it returns a new array.
+
+        To modify some or all items in array we use map method, bscause it returns a new array.
+
+
+LECTURE WRITING JAVASCRIPT INSIDE JSX
+
+        Recap:
+        Now you know almost everything about JSX:
+
+        JSX attributes inside quotes are passed as strings.
+
+        Curly braces let you bring JavaScript logic and variables into your markup.
+
+        They work inside the JSX tag content or immediately after = in attributes.
+
+        {{ and }} is not special syntax: it’s a JavaScript object tucked inside JSX curly braces.
+
+
+    
+LECTURE PASSING DATA TO CHILD COMPONENTS
+    1.  Parent passing data to child.
+
+    2.  child collecting Data from parent.
+
+            When collecting data from parent, props is the only argument provided to the child functional component.
+
+            NOTE:   the props argument will return Object.
+                    This is the reason why object distructuring method also works here on data collection.
+
+            methods of Data collection:
+             1. props method
+             2. Object distructuring
+
+    3.  Passing JSX as children 
+    4.  How to provide default values when collecting Props
+    5.  How to forward all props collected by parent to it's Child using spread 
+        operetor
+
+
+        Recap
+        To pass props, add them to the JSX, just like you would with HTML attributes.
+
+        To read props, use the function Avatar({ person, size }) destructuring syntax.
+
+        You can specify a default value like size = 100, which is used for missing and undefined props.
+
+        You can forward all props with <Avatar {...props} /> JSX spread syntax, but don’t overuse it!
+
+        Nested JSX like <Card><Avatar /></Card> will appear as Card component’s children prop.
+
+        Props are read-only snapshots in time: every render receives a new version of props.
+
+        You can’t change props. When you need interactivity, you’ll need to set state.
+
+CONDITIONAL RENDERING:
+    Diferent conditional rendering methods
+        1. Using the Javascript Logical AND (&&)  (used when only one thing is involved)
+            used mainly if to render only one thing.
+            it renders only one thing if the condition is true. and nothing if the condition is false.
+
+        2. Using JavaScript Tenary operator (used when only two things are involved)
+
+            used for rendering” two things, ONE for TRUTHY and the OTHER for FALSEY.
+
+        3. Using JavaScript if statement. (use when multiple things are involved)
+            used when ,multiple things(more than 3) are to be rendered depending on conditions.
+
+
+            
+        Recap
+        In React, you control branching logic with JavaScript.
+
+        You can return a JSX expression conditionally with an if statement.
+
+        You can conditionally save some JSX to a variable and then include it inside other JSX by using the curly braces.
+
+        In JSX, {cond ? <A /> : <B />} means “if cond, render <A />, otherwise <B />”.
+
+        In JSX, {cond && <A />} means “if cond, render <A />, otherwise nothing”.
+
+        The shortcuts are common, but you don’t have to use them if you prefer plain if.
+
+
+RENDERING LIST IN REACT USING MAP METHOD
+
+        Where to get your key :
+
+        Different sources of data provide different sources of keys:
+
+        Data from a database: If your data is coming from a database, you can use the database keys/IDs, which are unique by nature.
+
+        Locally generated data: If your data is generated and persisted locally (e.g. notes in a note-taking app), use an incrementing counter, crypto.randomUUID() or a package like uuid when creating items.
+
+    
+        Recap
+        On this page you learned:
+
+        How to move data out of components and into data structures like arrays and objects.
+
+        How to generate sets of similar components with JavaScript’s map().
+
+        How to create arrays of filtered items with JavaScript’s filter().
+        
+        Why and how to set key on each component in a collection so React can keep track of each of them even if their position or data changes.
+
+        
