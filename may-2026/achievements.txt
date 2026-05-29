@@ -699,3 +699,47 @@ RENDERING LIST IN REACT USING MAP METHOD
         Why and how to set key on each component in a collection so React can keep track of each of them even if their position or data changes.
 
         
+
+LECTURE KEEEPING FUNCTION PURE:
+    What is a pure function, these are function that  produces the same result given the same input.
+
+    pure functional component do not modify variables that existed before it's calling, they only read it. 
+    They don not modify variables that existed before its rendering, they only read it while rendering.
+
+    Pure functions don’t mutate variables outside of the function’s scope or objects that were created before the call—that makes them impure.
+
+    However, it’s completely fine to change variables and objects that you’ve just created while rendering.
+
+    NOTE: SIDE EFFECTS DO NOT NEED TO BE PURE FUNCTIONS, ESPECIALY AS THEY CUASE DATA CHAGE, THEY CAN COUSE VARIABLE CHANGE.
+
+    e.g: 
+        in mathematics: let y = 2x
+        then let x=5
+        this means that anytime x =  2 , y will always be 10. 
+        this is the characterestice of pure function.
+        Given the same input it produces the same output.
+
+        React is designed around this concept. React assumes that every funtional component you write is a pure function. This means that React components you write must always return the same JSX given the same inputs.
+
+        In general, you should not expect your components to be rendered in any particular order. It doesn’t matter if you call y = 2x before or after y = 5x: both formulas will resolve independently of each other. In the same way, each component should only “think for itself”, and not attempt to coordinate with or depend upon others during rendering. Rendering is like a school exam: each component should  calculate JSX on their own!
+
+        Rendering can happen at any time, so components should not depend on each others’ rendering sequence.
+
+
+        RECAP: 
+        A component must be pure, meaning:
+        It minds its own business. It should not change any objects or variables that existed before rendering.
+
+        Same inputs, same output. Given the same inputs, a component should always return the same JSX.
+
+        Rendering can happen at any time, so components should not depend on each others’ rendering sequence.
+
+        You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the 
+        
+        screen, “set” state instead of mutating preexisting objects.
+        
+        Strive to express your component’s logic in the JSX you return. When you need to “change things”, you’ll usually want to do it in an event handler. As a last resort, you can useEffect.
+        
+        Writing pure functions takes a bit of practice, but it unlocks the power of React’s paradigm.
+
+        

@@ -28,3 +28,8 @@ vi. Writing anonymous that manipulate the state in a zustand funtion.
 vii what is set in zustand
 v3i what is selector  and why selectoe in zustand
 ix. what is store in zustand
+
+WEEK 5: 
+Strugling to undrstand the main dfferecd between and impure and pure function
+when need  pure funtion and when not, 
+when to need need impure function and when not To
