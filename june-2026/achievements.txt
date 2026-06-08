@@ -81,3 +81,20 @@ WEEK1
         For UI patterns like selection, keep ID or index in state instead of the object itself.
 
         If updating deeply nested state is complicated, try flattening it.
+
+
+
+
+Preserving and Resetting State:
+    State is isolated between components. React keeps track of which state belongs to which component based on their place in the UI tree. 
+
+    When you give a component state, you might think the state “lives” inside the component. But the state is actually held inside React. React associates each piece of state it’s holding with the correct component by where that component sits in the render tree.
+
+    In React, each component on the screen has fully isolated state. For example, if you render two Counter components side by side, each of them will get its own, independent state.
+
+
+        Recap
+        React keeps state for as long as the same component is rendered at the same position.
+        State is not kept in JSX tags. It’s associated with the tree position in which you put that JSX.
+        You can force a subtree to reset its state by giving it a different key.
+        Don’t nest component definitions, or you’ll reset state by accident.

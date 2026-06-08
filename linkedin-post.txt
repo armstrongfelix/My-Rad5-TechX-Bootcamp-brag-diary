@@ -1,0 +1,8 @@
+1. How react framework, makes it it possible for modular decomposition of web applications?
+
+2. comparing the web apllication (digital shope) to  physical shope buildings, the web developer and the civil Engineer.
+
+3. hiw react aides passing data and function together.
+
+4. compare how data and function are tired together at useState, at useContext, Zustand, tanstack, and how the are always being passed together. how react component communicate through  messega passing.
+

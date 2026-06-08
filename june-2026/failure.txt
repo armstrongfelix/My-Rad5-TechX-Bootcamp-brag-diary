@@ -1,0 +1,10 @@
+WEEK1
+1.  AI for Development
+        Open Code Documentation
+
+2.  DataBase as a service
+        a.  FireBase Documentation
+    
+3.  Deployment as a service
+        a.  vercel
+        b.  netlify
