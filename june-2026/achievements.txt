@@ -98,3 +98,114 @@ Preserving and Resetting State:
         State is not kept in JSX tags. It’s associated with the tree position in which you put that JSX.
         You can force a subtree to reset its state by giving it a different key.
         Don’t nest component definitions, or you’ll reset state by accident.
+
+
+WEEK2 
+
+    React useReducer
+        Recap
+        To convert from useState to useReducer:
+        Dispatch actions from event handlers.
+        Write a reducer function that returns the next state for a given state and action.
+        Replace useState with useReducer.
+        Reducers require you to write a bit more code, but they help with debugging and testing.
+        Reducers must be pure.
+        Each action describes a single user interaction.
+        Use Immer if you want to write reducers in a mutating style.
+
+
+WEEK3
+1.  COMBINING REDUCER AND CONTEXT API TO SCALE UP APPLICATIONS
+    Recap
+        You can combine reducer with context to let any component read and update state above it.
+        To provide state and the dispatch function to components below:
+        Create two contexts (for state and for dispatch functions).
+        Provide both contexts from the component that uses the reducer.
+        Use either context from components that need to read them.
+        You can further declutter the components by moving all wiring into one file.
+        You can export a component like TasksProvider that provides context.
+        You can also export custom Hooks like useTasks and useTasksDispatch to read it.
+        You can have many context-reducer pairs like this in your app.
+
+
+    
+2.  USEREF
+
+        The most common use case for a ref is to access a DOM element.
+
+        Recap
+        Refs are an escape hatch to hold onto values that aren’t used for rendering. You won’t need them often.
+        A ref is a plain JavaScript object with a single property called current, which you can read or set.
+        You can ask React to give you a ref by calling the useRef Hook.
+        Like state, refs let you retain information between re-renders of a component.
+        Unlike state, setting the ref’s current value does not trigger a re-render.
+        Don’t read or write ref.current during rendering. This makes your component hard to predict.    
+
+3.  Synchronizing with Effects
+
+        Rendering code (introduced in Describing the UI) lives at the top level of your component. This is where you take the props and state, transform them, and return the JSX you want to see on the screen. Rendering code must be pure. Like a math formula, it should only calculate the result, but not do anything else.
+
+        Event handlers (introduced in Adding Interactivity) are nested functions inside your components that do things rather than just calculate them. An event handler might update an input field, submit an HTTP POST request to buy a product, or navigate the user to another screen. Event handlers contain “side effects” (they change the program’s state) caused by a specific user action (for example, a button click or typing).
+
+        Effects let you specify side effects that are caused by rendering itself, rather than by a particular event. Sending a message in the chat is an event because it is directly caused by the user clicking a specific button. However, setting up a server connection is an Effect because it should happen no matter which interaction caused the component to appear. Effects run at the end of a commit after the screen updates. This is a good time to synchronize the React components with some external system (like network or a third-party library).
+
+    NOTE: 
+        Effects are blocks of code that runs due to component rendering.
+        They are trigergered because the component have rendered or re-rendered.
+
+        Notice that you can’t “choose” your dependencies. You will get a lint error if the dependencies you specified don’t match what React expects based on the code inside your Effect.
+
+
+
+    
+        Writing fetch calls inside Effects is a popular way to fetch data, especially in fully client-side apps. This is, however, a very manual approach and it has significant downsides:
+
+        Effects don’t run on the server. This means that the initial server-rendered HTML will only include a loading state with no data. The client computer will have to download all JavaScript and render your app only to discover that now it needs to load the data. This is not very efficient.
+
+        Fetching directly in Effects makes it easy to create “network waterfalls”. You render the parent component, it fetches some data, renders the child components, and then they start fetching their data. If the network is not very fast, this is significantly slower than fetching all data in parallel.
+
+        Fetching directly in Effects usually means you don’t preload or cache data. For example, if the component unmounts and then mounts again, it would have to fetch the data again.
+
+        It’s not very ergonomic. There’s quite a bit of boilerplate code involved when writing fetch calls in a way that doesn’t suffer from bugs like race conditions.
+
+        This list of downsides is not specific to React. It applies to fetching data on mount with any library. Like with routing, data fetching is not trivial to do well, so we recommend the following approaches:
+
+        If you use a framework, use its built-in data fetching mechanism. Modern React frameworks have integrated data fetching mechanisms that are efficient and don’t suffer from the above pitfalls.
+
+            Otherwise, consider using or building a client-side cache. Popular open source solutions include TanStack Query, useSWR, and React Router 6.4+. You can build your own solution too, in which case you would use Effects under the hood, but add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
+
+        
+    Recap
+        Unlike events, Effects are caused by rendering itself rather than a particular interaction.
+
+        Effects let you synchronize a component with some external system (third-party API, network, etc).
+
+        By default, Effects run after every render (including the initial one).
+        React will skip the Effect if all of its dependencies have the same values as during the last render.
+
+        You can’t “choose” your dependencies. They are determined by the code inside the Effect.
+
+        Empty dependency array ([]) corresponds to the component “mounting”, i.e. being added to the screen.
+
+        In Strict Mode, React mounts components twice (in development only!) to stress-test your Effects.
+
+        If your Effect breaks because of remounting, you need to implement a cleanup function.
+        
+        React will call your cleanup function before the Effect runs next time, and during the unmount.
+
+
+
+WEEK4
+
+UNDERSTOOD:
+The Problem with my Image App.
+1. if I click load more button it reload all the images for me.
+        This was beacuse of mounting and unmounting the grid gallary  component. I was using Tenary operator to mount <p>loaing</p>-tag or grid component
+
+        To correect it,Do not use conditions to render the grid component
+        beacuse using conditions will unmount it and mounting it again will require it it start afresh to render all the component in the store intead of just add the newly appneded items to the screen.
+
+2. UNDERSTOOD hoe to open and buy a domain from cloudflaire, Hostinger.
+3. use AI to connect my FireBase authentication with provider email
+4. use ai to also connect to FireBase authentication with provider google
+5. use ai to create and manage collection in FireBase

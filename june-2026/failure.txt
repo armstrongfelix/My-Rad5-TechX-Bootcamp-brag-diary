@@ -8,3 +8,41 @@ WEEK1
 3.  Deployment as a service
         a.  vercel
         b.  netlify
+
+
+WEEK 2:
+How to do pagenation in javascript appication
+How to do pagenation in react appication
+when running pagenation, to make sure your component will no rerender every other rendered content.
+
+The Problem with my Image App.
+1. if I click load more button it reload all the images for me.
+        This was beacuse of mounting and unmounting the grid gallary  component. I was using Tenary operator to mount <p>loaing</p>-tag or grid component
+
+        To correect it,Do not use conditions to render the grid component
+        beacuse using conditions will unmount it and mounting it again will require it it start afresh to render all the component in the store intead of just add the newly appneded items to the screen.
+
+WEEK 3
+
+1.      API  request management libraries
+        FireBase Documentation
+        FireBase setup
+        Google I/O
+        Cousera course Software engineeing
+
+(22-06-2026)
+2.      READ FULL DOCUMENTATION  FOR CRUD-OPERATIONS IN FIREBASE
+        1. Create
+        2. delete
+        3. read
+        4. update
+
+3.      Watch the full video for google I/O
+        1. the the full video
+        2. the developer recap
+        3. the GEMINI update
+        4. the gemini OMINI
+        5. etc.
+
+
+4.      ATTEND TO MY SOFTWARE ENGINEERING COURSE AT COURSERA
